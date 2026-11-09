@@ -32,6 +32,7 @@
 #include <vector>
 
 #include <rex/cvar.h>
+#include "ptbr_menu.h"
 #include <rex/filesystem.h>
 #if !REX_PLATFORM_PS5
 #include <rex/input/input_system.h>
@@ -45,6 +46,7 @@
 #include <rex/ui/window.h>
 #include <rex/ui/windowed_app_context.h>
 
+REXCVAR_DEFINE_BOOL(mcla_ptbr, false, "MCLA", "Translate supported in-game menu text to Brazilian Portuguese");
 REXCVAR_DEFINE_BOOL(mcla_motion_blur, true, "MCLA", "Motion blur");
 REXCVAR_DEFINE_BOOL(mcla_depth_of_field, true, "MCLA", "Depth of field blur");
 REXCVAR_DEFINE_BOOL(mcla_settings_menu, true, "MCLA",
@@ -246,6 +248,8 @@ void SetStringTableText(const char* key, const char* text) {
   if (!table) {
     return;
   }
+  const std::string localized_text = MclaLocalizeMenuText(text);
+  text = localized_text.c_str();
   size_t length = std::strlen(text);
   if (length > 131) {
     length = 131;
