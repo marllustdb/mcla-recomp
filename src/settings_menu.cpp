@@ -31,8 +31,9 @@
 #include <string_view>
 #include <vector>
 
-#include <rex/cvar.h>
 #include "ptbr_menu.h"
+
+#include <rex/cvar.h>
 #include <rex/filesystem.h>
 #if !REX_PLATFORM_PS5
 #include <rex/input/input_system.h>
